@@ -19,6 +19,14 @@ namespace RimTalkSocialDining
         {
             var entries = new List<CommonKnowledgeEntryData>();
 
+            // 0. 命令执行指令 - 告诉 AI 如何调用系统
+            entries.Add(new CommonKnowledgeEntryData
+            {
+                tag = "社交,共餐,命令",
+                content = "要邀请某人共餐，使用意图命令：share_food(发起者, 接收者, 食物)。例如：当Alice想和Bob共餐时，执行 share_food(Alice, Bob, meal)。这会触发游戏内的共餐系统。",
+                importance = 1.0f
+            });
+
             // 1. 核心行为：什么时候应该邀请别人一起吃饭
             entries.Add(new CommonKnowledgeEntryData
             {

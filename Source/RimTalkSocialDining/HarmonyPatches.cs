@@ -1,6 +1,9 @@
 using HarmonyLib;
 using RimWorld;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Verse;
 using Verse.AI;
 
@@ -31,7 +34,7 @@ namespace RimTalkSocialDining
     /// </summary>
 
     /// <summary>
-    /// 可选的调试补丁：记录殖民者的思维树中包括社交用餐节点（可通过日志验证）
+    /// 可选的调试补丁：记录殖民者的思维树中包含社交用餐节点（通过日志验证）
     /// </summary>
     [HarmonyPatch(typeof(Pawn_JobTracker), "StartJob")]
     public static class Patch_PawnJobTracker_StartJob
@@ -39,12 +42,89 @@ namespace RimTalkSocialDining
         [HarmonyPrefix]
         public static void Prefix(Pawn ___pawn, Job newJob)
         {
-            // 仅在开发模式下记录社交用餐任务
+            // 在开发模式下记录社交用餐任务
             if (Prefs.DevMode || SocialDiningSettings.enableDebugLogging)
             {
                 if (newJob != null && newJob.def == SocialDiningDefOf.SocialDine)
                 {
                     Log.Message($"[RimTalkSocialDining] {___pawn.LabelShort} 开始社交用餐任务");
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// ? 新增：RimTalk 响应处理补丁 - 拦截 AI 输出并解析意图命令
+    /// </summary>
+    [HarmonyPatch]
+    public static class Patch_RimTalk_ProcessResponse
+    {
+        // 尝试多个可能的目标方法
+        static bool Prepare()
+        {
+            // 检查 RimTalk 是否加载
+            var rimTalkAssembly = System.AppDomain.CurrentDomain.GetAssemblies()
+                .FirstOrDefault(a => a.GetName().Name.Contains("RimTalk") && !a.GetName().Name.Contains("ExpandMemory"));
+            
+            return rimTalkAssembly != null;
+        }
+
+        static System.Reflection.MethodBase TargetMethod()
+        {
+            // 查找 RimTalk.Service.AIService 的响应处理方法
+            var rimTalkAssembly = System.AppDomain.CurrentDomain.GetAssemblies()
+                .FirstOrDefault(a => a.GetName().Name.Contains("RimTalk") && !a.GetName().Name.Contains("ExpandMemory"));
+            
+            if (rimTalkAssembly == null)
+                return null;
+
+            // 查找 AIService 类型
+            var aiServiceType = rimTalkAssembly.GetType("RimTalk.Service.AIService");
+            if (aiServiceType == null)
+                return null;
+
+            // 查找响应处理方法（可能是 HandleResponse、ProcessResponse 等）
+            var methods = aiServiceType.GetMethods(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Instance);
+            
+            foreach (var method in methods)
+            {
+                // 寻找包含 response 参数的方法
+                var parameters = method.GetParameters();
+                if (parameters.Any(p => p.Name.ToLower().Contains("response") || p.ParameterType.Name.ToLower().Contains("response")))
+                {
+                    Log.Message($"[RimTalkSocialDining] 找到 RimTalk 响应处理方法：{method.Name}");
+                    return method;
+                }
+            }
+
+            return null;
+        }
+
+        [HarmonyPostfix]
+        public static void Postfix(object __instance, string __result)
+        {
+            // 尝试解析 AI 响应中的共餐意图
+            if (!string.IsNullOrEmpty(__result))
+            {
+                try
+                {
+                    // 获取当前对话的 Pawn（需要通过反射获取）
+                    // 这里简化处理，实际可能需要更复杂的上下文获取
+                    
+                    // 尝试解析意图
+                    // RimTalkIntentListener.TryParseAndExecute(__result, speaker, listener);
+                    
+                    if (Prefs.DevMode || SocialDiningSettings.enableDebugLogging)
+                    {
+                        if (__result.Contains("share_food"))
+                        {
+                            Log.Message($"[RimTalkSocialDining] 检测到 AI 输出中的共餐意图：{__result}");
+                        }
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    Log.Error($"[RimTalkSocialDining] RimTalk 响应处理补丁出错：{ex.Message}");
                 }
             }
         }
