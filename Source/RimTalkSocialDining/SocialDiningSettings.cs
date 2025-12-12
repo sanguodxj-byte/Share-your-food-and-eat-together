@@ -14,6 +14,7 @@ namespace RimTalkSocialDining
         public static bool enableAutoSocialDining = true; // 是否启用 AI 自动触发
         public static float hungerThreshold = 0.5f;       // 饥饿阈值 (0.5 = 50%)
         public static int cooldownHours = 2;              // 冷却时间（游戏小时）
+        public static bool enableDebugLogging = false;    // 是否启用调试日志
 
         /// <summary>
         /// 保存和加载设置
@@ -27,6 +28,7 @@ namespace RimTalkSocialDining
             Scribe_Values.Look(ref enableAutoSocialDining, "enableAutoSocialDining", true);
             Scribe_Values.Look(ref hungerThreshold, "hungerThreshold", 0.5f);
             Scribe_Values.Look(ref cooldownHours, "cooldownHours", 2);
+            Scribe_Values.Look(ref enableDebugLogging, "enableDebugLogging", false);
         }
 
         /// <summary>
@@ -164,24 +166,18 @@ namespace RimTalkSocialDining
             listingStandard.Gap();
             listingStandard.GapLine();
 
-            // ========== 功能说明 ==========
-            listingStandard.Label("SocialDining_FeatureDescription".Translate());
+            // ========== 调试设置 ==========
+            listingStandard.Label("SocialDining_DebugSettings".Translate());
             listingStandard.Gap(6f);
 
-            Text.Font = GameFont.Tiny;
-            
-            // 原版模式说明
-            listingStandard.Label("? " + "SocialDining_VanillaModeDesc".Translate());
-            listingStandard.Gap(2f);
-            
-            // RimTalk 模式说明
-            listingStandard.Label("? " + "SocialDining_RimTalkModeDesc".Translate());
-            listingStandard.Gap(2f);
-            
-            // AI 自动触发说明
-            listingStandard.Label("? " + "SocialDining_AutoTriggerDesc".Translate());
-            
-            Text.Font = GameFont.Small;
+            // 启用调试日志
+            bool debugLogging = SocialDiningSettings.enableDebugLogging;
+            listingStandard.CheckboxLabeled(
+                "SocialDining_EnableDebugLogging".Translate(),
+                ref debugLogging,
+                "SocialDining_EnableDebugLoggingTooltip".Translate()
+            );
+            SocialDiningSettings.enableDebugLogging = debugLogging;
 
             listingStandard.Gap();
             listingStandard.GapLine();
@@ -194,6 +190,7 @@ namespace RimTalkSocialDining
                 SocialDiningSettings.enableAutoSocialDining = true;
                 SocialDiningSettings.hungerThreshold = 0.5f;
                 SocialDiningSettings.cooldownHours = 2;
+                SocialDiningSettings.enableDebugLogging = false;
             }
 
             listingStandard.End();

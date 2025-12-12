@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+ï»¿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <!-- Job Labels -->
   <SocialDine_Label>Social Dining</SocialDine_Label>
@@ -47,7 +47,7 @@
   
   <!-- Feature Description -->
   <SocialDining_FeatureDescription>Feature Description</SocialDining_FeatureDescription>
-  <SocialDining_VanillaModeDesc>Vanilla Mode: Right-click colonist ¡ú Social ¡ú Offer Food</SocialDining_VanillaModeDesc>
+  <SocialDining_VanillaModeDesc>Vanilla Mode: Right-click colonist â†’ Social â†’ Offer Food</SocialDining_VanillaModeDesc>
   <SocialDining_RimTalkModeDesc>RimTalk AI Mode: AI automatically judges and triggers dining based on conversation</SocialDining_RimTalkModeDesc>
   <SocialDining_AutoTriggerDesc>AI Auto-Trigger: Colonists automatically find partners when hungry, no manual action needed</SocialDining_AutoTriggerDesc>
   
