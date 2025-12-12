@@ -7,6 +7,7 @@ namespace RimTalkSocialDining
 {
     /// <summary>
     /// 常识库生成器 - 为 RimTalk 常识库生成社交共餐相关的提示词
+    /// 优化版：只包含驱动小人行动的核心常识
     /// </summary>
     public static class KnowledgeBaseGenerator
     {
@@ -18,84 +19,60 @@ namespace RimTalkSocialDining
         {
             var entries = new List<CommonKnowledgeEntryData>();
 
-            // 1. 核心行为指令
+            // 1. 核心行为：什么时候应该邀请别人一起吃饭
             entries.Add(new CommonKnowledgeEntryData
             {
-                tag = "社交,共餐,行为指令",
-                content = "当小人处于饥饿状态（饥饿度 < 50%）且附近有其他饥饿的殖民者时，可以主动邀请对方一起共享同一份食物进餐。这样可以增进关系并获得社交愉悦感。",
+                tag = "社交,共餐,行为",
+                content = "当你饥饿且手里有食物时，如果看到附近也有饥饿的同伴，应该主动邀请对方一起分享食物。共同进餐可以增进感情，让彼此心情更好。",
+                importance = 0.95f
+            });
+
+            // 2. 优先邀请谁
+            entries.Add(new CommonKnowledgeEntryData
+            {
+                tag = "社交,共餐,对象选择",
+                content = "优先邀请你喜欢的人一起吃饭，比如好友、恋人、配偶、家人。避免邀请和你关系很差的人，因为他们很可能会拒绝。",
                 importance = 0.9f
             });
 
-            // 2. 触发条件说明
+            // 3. 什么情况下接受邀请
             entries.Add(new CommonKnowledgeEntryData
             {
-                tag = "社交,共餐,触发条件",
-                content = "触发社交共餐需要满足：(1) 双方都处于饥饿状态，(2) 发起者携带或能找到食物，(3) 双方关系不是敌对（好感度 > -20），(4) 接收者未在执行重要任务。",
+                tag = "社交,共餐,接受邀请",
+                content = "当有人邀请你一起吃饭时，如果你也饿了，且和对方关系还不错，就应该欣然接受。一起吃饭比一个人吃更有意思，还能增进友谊。",
+                importance = 0.9f
+            });
+
+            // 4. 什么情况下拒绝邀请
+            entries.Add(new CommonKnowledgeEntryData
+            {
+                tag = "社交,共餐,拒绝邀请",
+                content = "如果你不饿、正在忙重要的事、或者不喜欢对方提供的食物，可以礼貌拒绝共餐邀请。和关系很差的人一起吃饭会让你不舒服。",
                 importance = 0.85f
             });
 
-            // 3. 社交效果说明
+            // 5. 在哪里吃
             entries.Add(new CommonKnowledgeEntryData
             {
-                tag = "社交,共餐,效果",
-                content = "成功的社交共餐会带来正面效果：(1) 双方获得'共同进餐'心情加成（+3，持续0.5天），(2) 增进相互之间的关系，(3) 提升社交需求。",
-                importance = 0.8f
-            });
-
-            // 4. 拒绝原因说明
-            entries.Add(new CommonKnowledgeEntryData
-            {
-                tag = "社交,共餐,拒绝",
-                content = "邀请可能被拒绝的原因包括：(1) 接收者不够饥饿（饱食度 > 80%），(2) 双方关系太差（好感度 < -20），(3) 接收者正在执行重要任务，(4) 接收者不喜欢该食物类型。",
+                tag = "社交,共餐,地点",
+                content = "共餐时优先去餐厅的餐桌旁，在餐桌上吃饭心情会更好。如果找不到餐桌，也可以在野外站着一起吃，虽然没那么舒适，但总比一个人吃强。",
                 importance = 0.75f
             });
 
-            // 5. 优先级建议
-            entries.Add(new CommonKnowledgeEntryData
-            {
-                tag = "社交,共餐,优先级",
-                content = "社交共餐优先级建议：优先邀请好感度高的殖民者（好感度 ≥ 20），优先在有餐桌的地方进餐（心情加成更高），避免在危险或紧急情况下触发。",
-                importance = 0.7f
-            });
-
-            // 6. 接受概率因素
-            entries.Add(new CommonKnowledgeEntryData
-            {
-                tag = "社交,共餐,接受概率",
-                content = "影响接受邀请的因素：(1) 饥饿程度越高，越容易接受（饥饿 > 50% 时 +40%），(2) 好感度越高越容易接受（好感 ≥ 20 时 +30%），(3) 发起者社交技能越高越容易成功（技能 ≥ 8 时 +15%），(4) Kind 特性增加接受率，Abrasive 特性降低接受率。",
-                importance = 0.85f
-            });
-
-            // 7. 餐桌使用说明
-            entries.Add(new CommonKnowledgeEntryData
-            {
-                tag = "社交,共餐,餐桌",
-                content = "系统会自动寻找合适的餐桌供双方共餐。如果找不到餐桌，会在野外选择相邻位置站立进餐（野餐模式）。在餐桌用餐比野餐获得更好的心情加成。",
-                importance = 0.65f
-            });
-
-            // 8. 食物类型适配
-            entries.Add(new CommonKnowledgeEntryData
-            {
-                tag = "社交,共餐,食物类型",
-                content = "几乎所有可食用的食物都可以用于社交共餐，包括：简单餐食、精致餐食、营养膏、生食等。系统会自动检查接收者的食物偏好，避免提供对方厌恶的食物。",
-                importance = 0.7f
-            });
-
-            // 9. 时机选择建议
+            // 6. 什么时候最适合共餐
             entries.Add(new CommonKnowledgeEntryData
             {
                 tag = "社交,共餐,时机",
-                content = "最佳社交共餐时机：(1) 用餐时间（早中晚餐时段），(2) 双方都在休息或空闲时，(3) 在公共区域（餐厅、休息室）遇到饥饿的同伴时，(4) 完成共同任务后的休息时间。",
-                importance = 0.75f
+                content = "用餐时间（早中晚饭点）是邀请共餐的最佳时机。当你和同伴都在休息或空闲时，在餐厅或公共区域遇到饥饿的人，可以主动邀请一起吃。",
+                importance = 0.8f
             });
 
-            // 10. 主动邀请策略
+            // 7. 共餐的好处
             entries.Add(new CommonKnowledgeEntryData
             {
-                tag = "社交,共餐,邀请策略",
-                content = "主动邀请建议：(1) 优先邀请关系亲密的殖民者（配偶、恋人、家人、好友），(2) 帮助新加入的殖民者快速融入团队，(3) 改善与关系较差的殖民者的关系，(4) 在殖民者心情低落时提供社交支持。",
-                importance = 0.8f
+                tag = "社交,共餐,好处",
+                content = "和别人一起吃饭会让你心情愉悦，感到温暖。这也是增进关系的好机会，尤其是和新加入的同伴或者关系需要改善的人。",
+                importance = 0.85f
             });
 
             return entries;
@@ -195,7 +172,7 @@ namespace RimTalkSocialDining
 
                 foreach (var entryData in knowledgeEntries)
                 {
-                    // 检查是否已存在相同标签的条目
+                    // 检查是否已存在相同标签和内容的条目
                     bool exists = false;
                     foreach (var existingEntry in entriesList)
                     {
