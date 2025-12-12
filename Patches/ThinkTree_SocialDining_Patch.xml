@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!--
+    将社交共餐节点添加到 Humanlike ThinkTree
+    注意：这个补丁可能失败，因为 ThinkTree 结构在不同版本中可能不同
+    如果失败，Mod 将通过 Harmony 补丁来实现功能
+  -->
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <!-- 尝试找到 Humanlike ThinkTree 的主 Priority 节点 -->
+      <li Class="PatchOperationTest">
+        <xpath>/Defs/ThinkTreeDef[defName="Humanlike"]/thinkRoot[@Class="ThinkNode_Priority"]</xpath>
+        <success>Normal</success>
+      </li>
+      
+      <!-- 如果找到，添加我们的节点到最前面 -->
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThinkTreeDef[defName="Humanlike"]/thinkRoot[@Class="ThinkNode_Priority"]/subNodes</xpath>
+        <order>Prepend</order>
+        <value>
+          <!-- 社交共餐检查 - 高优先级 -->
+          <li Class="RimTalkSocialDining.ThinkNode_ConditionalCanSocialDine">
+            <subNodes>
+              <li Class="RimTalkSocialDining.JobGiver_SocialDine" />
+            </subNodes>
+          </li>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+</Patch>

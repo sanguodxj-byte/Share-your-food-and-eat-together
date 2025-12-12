@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- Job Labels -->
+  <SocialDine_Label>Social Dining</SocialDine_Label>
+  <SocialDine_ReportString>Dining with {0}</SocialDine_ReportString>
+  
+  <!-- Thoughts -->
+  <SocialDining_ThinkingAbout>Thinking about dining with someone</SocialDining_ThinkingAbout>
+  
+  <!-- Log Messages -->
+  <SocialDining_Started>{0} and {1} started dining together</SocialDining_Started>
+  <SocialDining_Finished>{0} and {1} finished their meal</SocialDining_Finished>
+  
+  <!-- Mood Effects -->
+  <Thought_SharedMeal>Shared meal</Thought_SharedMeal>
+  <Thought_SharedMeal_Desc>I ate with someone. It feels warm and pleasant.</Thought_SharedMeal_Desc>
+
+  <!-- ========== Settings Menu ========== -->
+  
+  <!-- Title -->
+  <SocialDining_SettingsTitle>Social Dining Settings</SocialDining_SettingsTitle>
+  
+  <!-- Mode Selection -->
+  <SocialDining_ModeSelection>Trigger Mode Selection</SocialDining_ModeSelection>
+  <SocialDining_UseVanillaMode>Enable Vanilla Interaction Mode</SocialDining_UseVanillaMode>
+  <SocialDining_UseVanillaModeTooltip>Allow colonists to invite others to dine through vanilla social interaction menu</SocialDining_UseVanillaModeTooltip>
+  <SocialDining_UseRimTalkMode>Enable RimTalk AI Mode</SocialDining_UseRimTalkMode>
+  <SocialDining_UseRimTalkModeTooltip>Allow RimTalk AI to intelligently trigger dining based on conversation content (requires RimTalk Core mod)</SocialDining_UseRimTalkModeTooltip>
+  
+  <!-- Mode Status -->
+  <SocialDining_BothModesEnabled>? Both modes enabled. Colonists can trigger dining in multiple ways</SocialDining_BothModesEnabled>
+  <SocialDining_NoModeEnabled>? Warning: No trigger mode enabled. Social dining will not work!</SocialDining_NoModeEnabled>
+  
+  <!-- AI Settings -->
+  <SocialDining_AISettings>AI Auto-Trigger Settings</SocialDining_AISettings>
+  <SocialDining_EnableAutoTrigger>Enable AI Auto-Trigger</SocialDining_EnableAutoTrigger>
+  <SocialDining_EnableAutoTriggerTooltip>When colonists are hungry, AI will automatically find partners and trigger dining (no manual intervention needed)</SocialDining_EnableAutoTriggerTooltip>
+  
+  <!-- Hunger Threshold -->
+  <SocialDining_HungerThreshold>Hunger Threshold</SocialDining_HungerThreshold>
+  <SocialDining_HungerThresholdDesc>Social dining will only trigger when hunger bar is below this percentage. Recommended: 50%</SocialDining_HungerThresholdDesc>
+  
+  <!-- Cooldown -->
+  <SocialDining_CooldownHours>Cooldown Period</SocialDining_CooldownHours>
+  <SocialDining_Hours>hours</SocialDining_Hours>
+  <SocialDining_CooldownDesc>After completing a meal together, how long the same pair must wait before dining again. Recommended: 2 hours</SocialDining_CooldownDesc>
+  
+  <!-- Feature Description -->
+  <SocialDining_FeatureDescription>Feature Description</SocialDining_FeatureDescription>
+  <SocialDining_VanillaModeDesc>Vanilla Mode: Right-click colonist ¡ú Social ¡ú Offer Food</SocialDining_VanillaModeDesc>
+  <SocialDining_RimTalkModeDesc>RimTalk AI Mode: AI automatically judges and triggers dining based on conversation</SocialDining_RimTalkModeDesc>
+  <SocialDining_AutoTriggerDesc>AI Auto-Trigger: Colonists automatically find partners when hungry, no manual action needed</SocialDining_AutoTriggerDesc>
+  
+  <!-- Reset Button -->
+  <SocialDining_ResetToDefaults>Reset to Defaults</SocialDining_ResetToDefaults>
+</LanguageData>

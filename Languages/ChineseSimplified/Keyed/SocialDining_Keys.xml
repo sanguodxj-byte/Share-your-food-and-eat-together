@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- 任务标签 -->
+  <SocialDine_Label>社交共餐</SocialDine_Label>
+  <SocialDine_ReportString>正在与 {0} 共餐</SocialDine_ReportString>
+  
+  <!-- 思想记忆 -->
+  <SocialDining_ThinkingAbout>正在考虑与他人共餐</SocialDining_ThinkingAbout>
+  
+  <!-- 日志信息 -->
+  <SocialDining_Started>{0} 和 {1} 开始一起用餐</SocialDining_Started>
+  <SocialDining_Finished>{0} 和 {1} 完成了共餐</SocialDining_Finished>
+  
+  <!-- 心情提示 -->
+  <Thought_SharedMeal>与他人共餐</Thought_SharedMeal>
+  <Thought_SharedMeal_Desc>我和别人一起吃饭，感觉很温馨。</Thought_SharedMeal_Desc>
+
+  <!-- ========== 设置菜单 ========== -->
+  
+  <!-- 标题 -->
+  <SocialDining_SettingsTitle>社交共餐设置</SocialDining_SettingsTitle>
+  
+  <!-- 模式选择 -->
+  <SocialDining_ModeSelection>触发模式选择</SocialDining_ModeSelection>
+  <SocialDining_UseVanillaMode>启用原版互动方式</SocialDining_UseVanillaMode>
+  <SocialDining_UseVanillaModeTooltip>允许殖民者通过原版社交互动菜单主动邀请他人共餐</SocialDining_UseVanillaModeTooltip>
+  <SocialDining_UseRimTalkMode>启用 RimTalk AI 方式</SocialDining_UseRimTalkMode>
+  <SocialDining_UseRimTalkModeTooltip>允许 RimTalk AI 根据对话内容智能触发共餐（需要 RimTalk 核心 Mod）</SocialDining_UseRimTalkModeTooltip>
+  
+  <!-- 模式状态提示 -->
+  <SocialDining_BothModesEnabled>? 两种模式均已启用，殖民者可以通过多种方式触发共餐</SocialDining_BothModesEnabled>
+  <SocialDining_NoModeEnabled>? 警告：没有启用任何触发模式，共餐功能将无法使用！</SocialDining_NoModeEnabled>
+  
+  <!-- AI 设置 -->
+  <SocialDining_AISettings>AI 自动触发设置</SocialDining_AISettings>
+  <SocialDining_EnableAutoTrigger>启用 AI 自动触发共餐</SocialDining_EnableAutoTrigger>
+  <SocialDining_EnableAutoTriggerTooltip>当殖民者饥饿时，AI 会自动寻找伙伴并触发共餐（不需要玩家手动操作）</SocialDining_EnableAutoTriggerTooltip>
+  
+  <!-- 饥饿阈值 -->
+  <SocialDining_HungerThreshold>饥饿阈值</SocialDining_HungerThreshold>
+  <SocialDining_HungerThresholdDesc>只有当食物条低于此百分比时才会触发共餐。建议值：50%</SocialDining_HungerThresholdDesc>
+  
+  <!-- 冷却时间 -->
+  <SocialDining_CooldownHours>冷却时间</SocialDining_CooldownHours>
+  <SocialDining_Hours>小时</SocialDining_Hours>
+  <SocialDining_CooldownDesc>同一对殖民者完成共餐后，需要等待多久才能再次共餐。建议值：2 小时</SocialDining_CooldownDesc>
+  
+  <!-- 功能说明 -->
+  <SocialDining_FeatureDescription>功能说明</SocialDining_FeatureDescription>
+  <SocialDining_VanillaModeDesc>原版互动方式：右键点击殖民者 → 社交 → 提供食物</SocialDining_VanillaModeDesc>
+  <SocialDining_RimTalkModeDesc>RimTalk AI 方式：AI 根据对话内容自动判断并触发共餐</SocialDining_RimTalkModeDesc>
+  <SocialDining_AutoTriggerDesc>AI 自动触发：殖民者饥饿时会自动寻找伙伴共餐，无需手动操作</SocialDining_AutoTriggerDesc>
+  
+  <!-- 重置按钮 -->
+  <SocialDining_ResetToDefaults>恢复默认设置</SocialDining_ResetToDefaults>
+</LanguageData>
