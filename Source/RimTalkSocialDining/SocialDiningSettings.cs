@@ -1,5 +1,6 @@
 using UnityEngine;
 using Verse;
+using RimWorld;
 
 namespace RimTalkSocialDining
 {
@@ -178,6 +179,31 @@ namespace RimTalkSocialDining
                 "SocialDining_EnableDebugLoggingTooltip".Translate()
             );
             SocialDiningSettings.enableDebugLogging = debugLogging;
+
+            listingStandard.Gap();
+            listingStandard.GapLine();
+
+            // ========== RimTalk 常识库集成 ==========
+            listingStandard.Label("SocialDining_KnowledgeBaseIntegration".Translate());
+            listingStandard.Gap(6f);
+
+            Text.Font = GameFont.Tiny;
+            listingStandard.Label("SocialDining_KnowledgeBaseDesc".Translate());
+            Text.Font = GameFont.Small;
+            listingStandard.Gap();
+
+            // 生成并添加常识库按钮
+            if (listingStandard.ButtonText("SocialDining_GenerateKnowledgeBase".Translate()))
+            {
+                if (KnowledgeBaseGenerator.TryAddToRimTalkKnowledgeBase(out string resultMessage))
+                {
+                    Messages.Message(resultMessage, MessageTypeDefOf.PositiveEvent);
+                }
+                else
+                {
+                    Messages.Message(resultMessage, MessageTypeDefOf.RejectInput);
+                }
+            }
 
             listingStandard.Gap();
             listingStandard.GapLine();

@@ -51,6 +51,16 @@
   <SocialDining_RimTalkModeDesc>RimTalk AI 方式：AI 根据对话内容自动判断并触发共餐</SocialDining_RimTalkModeDesc>
   <SocialDining_AutoTriggerDesc>AI 自动触发：殖民者饥饿时会自动寻找伙伴共餐，无需手动操作</SocialDining_AutoTriggerDesc>
   
+  <!-- 调试设置 -->
+  <SocialDining_DebugSettings>调试设置</SocialDining_DebugSettings>
+  <SocialDining_EnableDebugLogging>启用调试日志</SocialDining_EnableDebugLogging>
+  <SocialDining_EnableDebugLoggingTooltip>在控制台输出详细的调试信息（开发者选项）</SocialDining_EnableDebugLoggingTooltip>
+  
+  <!-- RimTalk 常识库集成 -->
+  <SocialDining_KnowledgeBaseIntegration>RimTalk 常识库集成</SocialDining_KnowledgeBaseIntegration>
+  <SocialDining_KnowledgeBaseDesc>为 RimTalk 的常识库生成社交共餐相关的提示词，帮助 AI 更好地理解和使用共餐功能。需要安装 RimTalk-ExpandMemory 模组。</SocialDining_KnowledgeBaseDesc>
+  <SocialDining_GenerateKnowledgeBase>生成常识库条目并添加到 RimTalk</SocialDining_GenerateKnowledgeBase>
+  
   <!-- 重置按钮 -->
   <SocialDining_ResetToDefaults>恢复默认设置</SocialDining_ResetToDefaults>
 </LanguageData>

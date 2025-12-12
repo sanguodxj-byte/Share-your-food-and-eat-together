@@ -51,6 +51,16 @@
   <SocialDining_RimTalkModeDesc>RimTalk AI Mode: AI automatically judges and triggers dining based on conversation</SocialDining_RimTalkModeDesc>
   <SocialDining_AutoTriggerDesc>AI Auto-Trigger: Colonists automatically find partners when hungry, no manual action needed</SocialDining_AutoTriggerDesc>
   
+  <!-- Debug Settings -->
+  <SocialDining_DebugSettings>Debug Settings</SocialDining_DebugSettings>
+  <SocialDining_EnableDebugLogging>Enable Debug Logging</SocialDining_EnableDebugLogging>
+  <SocialDining_EnableDebugLoggingTooltip>Output detailed debug information to console (developer option)</SocialDining_EnableDebugLoggingTooltip>
+  
+  <!-- RimTalk Knowledge Base Integration -->
+  <SocialDining_KnowledgeBaseIntegration>RimTalk Knowledge Base Integration</SocialDining_KnowledgeBaseIntegration>
+  <SocialDining_KnowledgeBaseDesc>Generate social dining prompts for RimTalk's knowledge base to help AI better understand and use the dining feature. Requires RimTalk-ExpandMemory mod.</SocialDining_KnowledgeBaseDesc>
+  <SocialDining_GenerateKnowledgeBase>Generate and Add Knowledge Base Entries</SocialDining_GenerateKnowledgeBase>
+  
   <!-- Reset Button -->
   <SocialDining_ResetToDefaults>Reset to Defaults</SocialDining_ResetToDefaults>
 </LanguageData>
