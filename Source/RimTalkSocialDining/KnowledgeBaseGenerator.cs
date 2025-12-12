@@ -22,7 +22,7 @@ namespace RimTalkSocialDining
             // 0. 命令执行指令 - 告诉 AI 如何调用系统
             entries.Add(new CommonKnowledgeEntryData
             {
-                tag = "社交,共餐,命令",
+                tag = "吃饭,用餐,命令",
                 content = "要邀请某人共餐，使用意图命令：share_food(发起者, 接收者, 食物)。例如：当Alice想和Bob共餐时，执行 share_food(Alice, Bob, meal)。这会触发游戏内的共餐系统。",
                 importance = 1.0f
             });
@@ -30,7 +30,7 @@ namespace RimTalkSocialDining
             // 1. 核心行为：什么时候应该邀请别人一起吃饭
             entries.Add(new CommonKnowledgeEntryData
             {
-                tag = "社交,共餐,行为",
+                tag = "饿了,吃饭,食物",
                 content = "当你饥饿且手里有食物时，如果看到附近也有饥饿的同伴，应该主动邀请对方一起分享食物。共同进餐可以增进感情，让彼此心情更好。",
                 importance = 0.95f
             });
@@ -38,7 +38,7 @@ namespace RimTalkSocialDining
             // 2. 优先邀请谁
             entries.Add(new CommonKnowledgeEntryData
             {
-                tag = "社交,共餐,对象选择",
+                tag = "吃饭,邀请,朋友",
                 content = "优先邀请你喜欢的人一起吃饭，比如好友、恋人、配偶、家人。避免邀请和你关系很差的人，因为他们很可能会拒绝。",
                 importance = 0.9f
             });
@@ -46,7 +46,7 @@ namespace RimTalkSocialDining
             // 3. 什么情况下接受邀请
             entries.Add(new CommonKnowledgeEntryData
             {
-                tag = "社交,共餐,接受邀请",
+                tag = "饿了,用餐,接受",
                 content = "当有人邀请你一起吃饭时，如果你也饿了，且和对方关系还不错，就应该欣然接受。一起吃饭比一个人吃更有意思，还能增进友谊。",
                 importance = 0.9f
             });
@@ -54,7 +54,7 @@ namespace RimTalkSocialDining
             // 4. 什么情况下拒绝邀请
             entries.Add(new CommonKnowledgeEntryData
             {
-                tag = "社交,共餐,拒绝邀请",
+                tag = "吃饭,拒绝,忙碌",
                 content = "如果你不饿、正在忙重要的事、或者不喜欢对方提供的食物，可以礼貌拒绝共餐邀请。和关系很差的人一起吃饭会让你不舒服。",
                 importance = 0.85f
             });
@@ -62,7 +62,7 @@ namespace RimTalkSocialDining
             // 5. 在哪里吃
             entries.Add(new CommonKnowledgeEntryData
             {
-                tag = "社交,共餐,地点",
+                tag = "用餐,餐桌,地点",
                 content = "共餐时优先去餐厅的餐桌旁，在餐桌上吃饭心情会更好。如果找不到餐桌，也可以在野外站着一起吃，虽然没那么舒适，但总比一个人吃强。",
                 importance = 0.75f
             });
@@ -70,7 +70,7 @@ namespace RimTalkSocialDining
             // 6. 什么时候最适合共餐
             entries.Add(new CommonKnowledgeEntryData
             {
-                tag = "社交,共餐,时机",
+                tag = "饿了,吃饭,休息",
                 content = "用餐时间（早中晚饭点）是邀请共餐的最佳时机。当你和同伴都在休息或空闲时，在餐厅或公共区域遇到饥饿的人，可以主动邀请一起吃。",
                 importance = 0.8f
             });
@@ -78,7 +78,7 @@ namespace RimTalkSocialDining
             // 7. 共餐的好处
             entries.Add(new CommonKnowledgeEntryData
             {
-                tag = "社交,共餐,好处",
+                tag = "用餐,感情,心情",
                 content = "和别人一起吃饭会让你心情愉悦，感到温暖。这也是增进关系的好机会，尤其是和新加入的同伴或者关系需要改善的人。",
                 importance = 0.85f
             });
