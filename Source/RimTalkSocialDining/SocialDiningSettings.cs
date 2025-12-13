@@ -5,20 +5,20 @@ using RimWorld;
 namespace RimTalkSocialDining
 {
     /// <summary>
-    /// Mod 设置类 - 存储玩家偏好设置
+    /// Mod Settings - Store player preferences
     /// </summary>
     public class SocialDiningSettings : ModSettings
     {
-        // 设置选项
-        public static bool useVanillaInteraction = true;  // 是否使用原版互动方式
-        public static bool useRimTalkAI = false;          // 是否使用 RimTalk AI 方式
-        public static bool enableAutoSocialDining = true; // 是否启用 AI 自动触发
-        public static float hungerThreshold = 0.5f;       // 饥饿阈值 (0.5 = 50%)
-        public static int cooldownHours = 2;              // 冷却时间（游戏小时）
-        public static bool enableDebugLogging = false;    // 是否启用调试日志
+        // Setting options
+        public static bool useVanillaInteraction = true;
+        public static bool useRimTalkAI = false;
+        public static bool enableAutoSocialDining = true;
+        public static float hungerThreshold = 0.5f;
+        public static int cooldownHours = 2;
+        public static bool enableDebugLogging = false;
 
         /// <summary>
-        /// 保存和加载设置
+        /// Save and load settings
         /// </summary>
         public override void ExposeData()
         {
@@ -33,16 +33,16 @@ namespace RimTalkSocialDining
         }
 
         /// <summary>
-        /// 获取冷却时间（游戏刻数）
+        /// Get cooldown time in game ticks
         /// </summary>
         public static int CooldownTicks
         {
-            get { return cooldownHours * 2500; } // 1 小时 = 2500 刻
+            get { return cooldownHours * 2500; }
         }
     }
 
     /// <summary>
-    /// Mod 主类 - 处理设置界面
+    /// Mod Main Class - Handle settings UI
     /// </summary>
     public class SocialDiningMod : Mod
     {
@@ -54,7 +54,7 @@ namespace RimTalkSocialDining
         }
 
         /// <summary>
-        /// 设置类别名称
+        /// Settings category name
         /// </summary>
         public override string SettingsCategory()
         {
@@ -62,24 +62,24 @@ namespace RimTalkSocialDining
         }
 
         /// <summary>
-        /// 绘制设置界面
+        /// Draw settings window
         /// </summary>
         public override void DoSettingsWindowContents(Rect inRect)
         {
             Listing_Standard listingStandard = new Listing_Standard();
             listingStandard.Begin(inRect);
 
-            // ========== 标题 ==========
+            // Title
             Text.Font = GameFont.Medium;
             listingStandard.Label("SocialDining_SettingsTitle".Translate());
             Text.Font = GameFont.Small;
             listingStandard.Gap();
 
-            // ========== 模式选择 ==========
+            // Mode Selection
             listingStandard.Label("SocialDining_ModeSelection".Translate());
             listingStandard.Gap(6f);
 
-            // 原版互动模式
+            // Vanilla Interaction Mode
             bool vanillaMode = SocialDiningSettings.useVanillaInteraction;
             listingStandard.CheckboxLabeled(
                 "SocialDining_UseVanillaMode".Translate(),
@@ -88,7 +88,7 @@ namespace RimTalkSocialDining
             );
             SocialDiningSettings.useVanillaInteraction = vanillaMode;
 
-            // RimTalk AI 模式
+            // RimTalk AI Mode
             bool rimtalkMode = SocialDiningSettings.useRimTalkAI;
             listingStandard.CheckboxLabeled(
                 "SocialDining_UseRimTalkMode".Translate(),
@@ -99,7 +99,7 @@ namespace RimTalkSocialDining
 
             listingStandard.Gap();
             
-            // 提示：两种模式可以同时启用
+            // Mode status hints
             if (vanillaMode && rimtalkMode)
             {
                 listingStandard.Label("SocialDining_BothModesEnabled".Translate());
@@ -112,11 +112,11 @@ namespace RimTalkSocialDining
             listingStandard.Gap();
             listingStandard.GapLine();
 
-            // ========== AI 自动触发设置 ==========
+            // AI Auto-Trigger Settings
             listingStandard.Label("SocialDining_AISettings".Translate());
             listingStandard.Gap(6f);
 
-            // 启用 AI 自动触发
+            // Enable AI Auto-Trigger
             bool autoTrigger = SocialDiningSettings.enableAutoSocialDining;
             listingStandard.CheckboxLabeled(
                 "SocialDining_EnableAutoTrigger".Translate(),
@@ -127,7 +127,7 @@ namespace RimTalkSocialDining
 
             listingStandard.Gap();
 
-            // 饥饿阈值滑块
+            // Hunger Threshold Slider
             listingStandard.Label(
                 "SocialDining_HungerThreshold".Translate() + 
                 ": " + 
@@ -139,14 +139,14 @@ namespace RimTalkSocialDining
                 0.8f
             );
             
-            // 提示文本
+            // Hint text
             Text.Font = GameFont.Tiny;
             listingStandard.Label("SocialDining_HungerThresholdDesc".Translate());
             Text.Font = GameFont.Small;
 
             listingStandard.Gap();
 
-            // 冷却时间滑块
+            // Cooldown Hours Slider
             listingStandard.Label(
                 "SocialDining_CooldownHours".Translate() + 
                 ": " + 
@@ -159,7 +159,7 @@ namespace RimTalkSocialDining
                 8f
             );
             
-            // 提示文本
+            // Hint text
             Text.Font = GameFont.Tiny;
             listingStandard.Label("SocialDining_CooldownDesc".Translate());
             Text.Font = GameFont.Small;
@@ -167,11 +167,11 @@ namespace RimTalkSocialDining
             listingStandard.Gap();
             listingStandard.GapLine();
 
-            // ========== 调试设置 ==========
+            // Debug Settings
             listingStandard.Label("SocialDining_DebugSettings".Translate());
             listingStandard.Gap(6f);
 
-            // 启用调试日志
+            // Enable Debug Logging
             bool debugLogging = SocialDiningSettings.enableDebugLogging;
             listingStandard.CheckboxLabeled(
                 "SocialDining_EnableDebugLogging".Translate(),
@@ -183,7 +183,7 @@ namespace RimTalkSocialDining
             listingStandard.Gap();
             listingStandard.GapLine();
 
-            // ========== RimTalk 常识库集成 ==========
+            // RimTalk Knowledge Base Integration
             listingStandard.Label("SocialDining_KnowledgeBaseIntegration".Translate());
             listingStandard.Gap(6f);
 
@@ -192,7 +192,7 @@ namespace RimTalkSocialDining
             Text.Font = GameFont.Small;
             listingStandard.Gap();
 
-            // 生成并添加常识库按钮
+            // Generate and add knowledge base button
             if (listingStandard.ButtonText("SocialDining_GenerateKnowledgeBase".Translate()))
             {
                 if (KnowledgeBaseGenerator.TryAddToRimTalkKnowledgeBase(out string resultMessage))
@@ -208,7 +208,7 @@ namespace RimTalkSocialDining
             listingStandard.Gap();
             listingStandard.GapLine();
 
-            // ========== 重置按钮 ==========
+            // Reset Button
             if (listingStandard.ButtonText("SocialDining_ResetToDefaults".Translate()))
             {
                 SocialDiningSettings.useVanillaInteraction = true;
